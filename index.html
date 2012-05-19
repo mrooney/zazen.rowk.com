@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Zazen Meditation Timer</title>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.4/jquery-ui.min.js"></script>
+        <link href="http://zazenj.appspot.com/static/css/ui-lightness/jquery-ui-1.8.4.custom.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+        <div id="progressbar"></div>
+
+        <audio id="audio_b">
+            <!-- thanks to http://soundbible.com/1690-Indian-Bell.html -->
+            <source src="bell.ogg" type="audio/ogg" />
+            <source src="bell.mp3" type="audio/mp3" />
+        </audio>
+
+        <audio id="audio_g">
+            <!-- thanks to http://soundbible.com/1491-Zen-Buddhist-Temple-Bell.html -->
+            <source src="gong.ogg" type="audio/ogg" />
+            <source src="gong.mp3" type="audio/mp3" />
+            Alas, this browser does not support HTML5. Please upgrade to the latest version of your browser or <a href="https://www.google.com/intl/en/chrome/browser/">download Chrome</a>.
+        </audio>
+
+        <script>
+        function getParameterByName(p) {
+            var m = RegExp('[?&]' + p + '=([^&]*)').exec(window.location.search);
+            return m && decodeURIComponent(m[1].replace(/\+/g, ' '));
+        }
+
+        var query = getParameterByName('q');
+        var queue = query && query.match(/(\d+|\w)/g);
+
+        var process = function() {
+            if (!queue || queue.length === 0) {
+                return;
+            }
+            var element = queue.shift();
+            var minutes = parseInt(element);
+            if (isNaN(minutes)) {
+                var audio = $("#audio_" + element).get(0);
+                audio.addEventListener("ended", process);
+                audio.play();
+            } else {
+                var bar = $("#progressbar");
+                bar.progressbar({value: 100});
+                var tick = function() {
+                    var value = bar.progressbar("value");
+                    if (value > 0) {
+                        bar.progressbar("value", value - (100.0/(minutes*60)));
+                        setTimeout(tick, 1000);
+                    } else {
+                        setTimeout(process);
+                    }
+                }
+                setTimeout(tick, 1000);
+           }
+        }
+        process();
+        </script>
+    </body>
+</html>
