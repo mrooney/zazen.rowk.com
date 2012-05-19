@@ -1,5 +1,5 @@
 # About
-A simple zazen timer, using HTML5 <audio>. Both OGG and MP3 are specified so any modern browser should be happy.
+A simple zazen timer, using HTML5 \<audio\>. Both OGG and MP3 are specified so any modern browser should be happy.
 
 Input is handled via the URL for simplicity and easy bookmarking.
 
