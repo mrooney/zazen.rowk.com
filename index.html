@@ -2,11 +2,12 @@
 <html>
     <head>
         <title>Zazen Meditation Timer</title>
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.4/jquery-ui.min.js"></script>
-        <link href="http://zazenj.appspot.com/static/css/ui-lightness/jquery-ui-1.8.4.custom.css" rel="stylesheet" type="text/css">
+        <script type="text/javascript" src="/js/jquery-1.7.2.min.js"></script>
+        <script type="text/javascript" src="/js/jquery-ui-1.8.18.min.js"></script>
+        <link type="text/css" href="/css/jquery-ui-1.8.18.css" rel="stylesheet">
     </head>
     <body>
+        <div id="help"></div>
         <div id="progressbar"></div>
 
         <audio id="audio_b">
@@ -30,6 +31,12 @@
 
         var query = getParameterByName('q');
         var queue = query && query.match(/(\d+|\w)/g);
+
+        if (!queue) {
+            $.get('/help.html').success(function(response) {
+                $(response).appendTo('div#help');
+            });
+        }
 
         var process = function() {
             if (!queue || queue.length === 0) {
