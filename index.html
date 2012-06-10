@@ -24,46 +24,40 @@
         </audio>
 
         <script>
-        function getParameterByName(p) {
-            var m = RegExp('[?&]' + p + '=([^&]*)').exec(window.location.search);
-            return m && decodeURIComponent(m[1].replace(/\+/g, ' '));
-        }
+        $(function() {
+            var queue = window.location.pathname.match(/(\d+|\w)/g);
 
-        var query = getParameterByName('q');
-        var queue = query && query.match(/(\d+|\w)/g);
-
-        if (!queue) {
-            $.get('/help.html').success(function(response) {
-                $(response).appendTo('div#help');
-            });
-        }
-
-        var process = function() {
-            if (!queue || queue.length === 0) {
-                return;
+            if (!queue) {
+                window.location.href = "/help.html";
             }
-            var element = queue.shift();
-            var minutes = parseInt(element);
-            if (isNaN(minutes)) {
-                var audio = $("#audio_" + element).get(0);
-                audio.addEventListener("ended", process);
-                audio.play();
-            } else {
-                var bar = $("#progressbar");
-                bar.progressbar({value: 100});
-                var tick = function() {
-                    var value = bar.progressbar("value");
-                    if (value > 0) {
-                        bar.progressbar("value", value - (100.0/(minutes*60)));
-                        setTimeout(tick, 1000);
-                    } else {
-                        setTimeout(process);
-                    }
+
+            var process = function() {
+                if (!queue || queue.length === 0) {
+                    return;
                 }
-                setTimeout(tick, 1000);
-           }
-        }
-        process();
+                var element = queue.shift();
+                var minutes = parseInt(element);
+                if (isNaN(minutes)) {
+                    var audio = $("#audio_" + element).get(0);
+                    audio.addEventListener("ended", process);
+                    audio.play();
+                } else {
+                    var bar = $("#progressbar");
+                    bar.progressbar({value: 100});
+                    var tick = function() {
+                        var value = bar.progressbar("value");
+                        if (value > 0) {
+                            bar.progressbar("value", value - (100.0/(minutes*60)));
+                            setTimeout(tick, 1000);
+                        } else {
+                            setTimeout(process);
+                        }
+                    }
+                    setTimeout(tick, 1000);
+               }
+            }
+            process();
+        });
         </script>
     </body>
 </html>

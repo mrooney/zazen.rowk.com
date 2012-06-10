@@ -3,9 +3,9 @@ A simple zazen timer. Create URLs for different timing settings, and
 bookmark them for later use.
 
 # Examples
-* [http://zazen.rowk.com/?q=b10g](http://zazen.rowk.com/?q=b10g)
+* [http://zazen.rowk.com/b10g](http://zazen.rowk.com/b10g)
  * ring a bell, wait 10 minutes, and hit a gong.
-* [http://zazen.rowk.com/?q=bg30g10b30ggg](http://zazen.rowk.com/?q=bg30g10b30ggg)
+* [http://zazen.rowk.com/bg30g10b30ggg](http://zazen.rowk.com/bg30g10b30ggg)
  * generally imitates a period of zazen at a temple: two 30 minute periods of sitting with 10 minutes of kinhin in between.
 
 A 'b' or 'g' plays a bell or gong sound, respectively. A number
