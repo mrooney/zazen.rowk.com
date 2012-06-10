@@ -1,5 +1,5 @@
 # About
-A simple zazen timer. Create URLs for different timing settings, and
+A simple zazen / meditation timer. Create URLs for different timing settings, and
 bookmark them for later use.
 
 # Examples
