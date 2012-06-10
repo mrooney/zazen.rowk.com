@@ -6,7 +6,7 @@ bookmark them for later use.
 * [http://zazen.rowk.com/b10g](http://zazen.rowk.com/b10g)
  * ring a bell, wait 10 minutes, and hit a gong.
 * [http://zazen.rowk.com/bg30g10b30ggg](http://zazen.rowk.com/bg30g10b30ggg)
- * generally imitates a period of zazen at a temple: two 30 minute periods of sitting with 10 minutes of kinhin in between.
+ * vaguely imitates a period of zazen at a temple: two 30 minute periods of sitting with 10 minutes of kinhin (walking meditation) in between.
 
 A 'b' or 'g' plays a bell or gong sound, respectively. A number
 represents a number of minutes to wait.
